@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--
+   / *-- HTML FILE -------------------------------------------------------------
+    *  Application: JavaScript week 2 homework
+    *      Purpose: to create a calculator in JavaScript
+    *    File Name: add_some_numbers.html
+    *       Author: Norman McWilliams           Tester:
+    * Date created: 2018-06-26                  Date updated: 2018-06-28
+    * Time created:                             Time updated: 3:20pm
+    *  comments: need to come back and make some changes to validate input
+	*  need to find out how to keep page working after enter has been clicked
+    *-----------------------------------------------------------------------------
+    */
+-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My 1st Calculator</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+	<style>
+td, th {
+	border: 1px solid #CCC;
+	height: 100px;
+	width: 100px;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+	font-size: 2em;
+}
+.num_style {
+	background-color: green;
+	color: white;
+}
+#num_display {
+	background-color: gray;
+}
+</style>
+	<script>
+	var operand1 = 0;
+		var operand2 = 0;
+		var results = 0;
+		var operator1 = ""
+	</script>
+	</head>
+	<body>
+<!-- body code goes here -->
+<table>
+      <tr>
+    <td id="num_display" colspan="6"></td>
+  </tr>
+      <!-- 1st row or the calculator-->
+      <tr>
+    <th colspan="2"></th>
+    <th>MC</th>
+    <th>MR</th>
+    <th>M-</th>
+    <th>M+</th>
+  </tr>
+      <tr>
+    <td>OFF</td>
+    <td id="$7" class="num_style" onClick="dispClick('7')">7</td>
+    <td id="$8" class="num_style" onClick="dispClick(8)">8</td>
+    <td id="$9" class="num_style" onClick="dispClick(9)">9</td>
+    <td>%</td>
+    <td>&#8730;</td>
+  </tr>
+      <tr>
+    <td >UD</td>
+    <td id="$4" class="num_style" onClick="dispClick(4)">4</td>
+    <td id="$5" class="num_style" onClick="dispClick(5)">5</td>
+    <td id="$6" class="num_style" onClick="dispClick(6)">6</td>
+    <td>X</td>
+    <td>DIV</td>
+  </tr>
+      <tr>
+    <td>CE</td>
+    <td id="$1" class="num_style" onClick="dispClick(1)">1</td>
+    <td id="$2" class="num_style" onClick="dispClick(2)">2</td>
+    <td id="$3" class="num_style" onClick="dispClick(3)">3</td>
+    <td id="$add" rowspan="2" onClick="dispClick('+')" >+</td>
+    <td id="$sub"  onClick="dispClick('-')">-</td>
+  </tr>
+      <tr>
+    <td id="$on_and_clear" onClick="dispClick('on_and_clear')">ON/C</td>
+    <td id="$0" class="num_style" onClick="dispClick(0)">0</td>
+    <td id="$dot" onClick="dispClick('.')">.</td>
+    <td>+/-</td>
+    <td>=</td>
+  </tr>
+    </table>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/jquery-3.2.1.min.js"></script> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/popper.min.js"></script> 
+<script src="js/bootstrap-4.0.0.js"></script> 
+<script>
+	function dispClick(n) {
+		if (! isNaN(n)) { // if it's a number concant it to the string
+		document.getElementById("num_display").innerHTML += n;
+		} else if (n == ".") { // if it's a dot concant it to the string also
+			document.getElementById("num_display").innerHTML +=".";
+		} else if (n == "+") { // start logic for addition function 
+			if (operand1 == 0) { // if 1st number empty fill that number with the current value of num_display
+			operand1 = parseFloat(document.getElementById("num_display").innerHTML); //put value in operand1 if empty
+			operator1 = "+"; // addition sum is set
+			console.log("value of operand1 " + operand1);
+			console.log("value of operand2 " + operand2);
+			document.getElementById("num_display").innerHTML = " ";
+			} else if (n == "=") { // if equal sign clicked start sum function 
+			if ((operand1 > 0) && (operator1 == "+"))  { // if 2nd number > 0 than add numbers
+				if (operand2 > 0) { // operand2 has value so calc results 
+					results = operand1 + operand2;
+					document.getElementById("num_display").innerHTML = results;
+					console.log("operand1 value is " + operand1);
+					console.log("operand2 value is " + operand2);
+					console.log("results " + results);
+				} else { // store value to operand2
+					operand2 = document.getElementById("num_display").innerHTML ;
+					document.getElementById("num_display").innerHTML = " ";
+					console.log("operand2 = " + operand2);
+					console.log("operand1 = " + operand1);
+				}
+			}
+				
+		}
+		} else if (n == "on_and_clear") { // reset all variables and display on console 
+			console.log(operand1 = 0);
+			console.log(operand2 = 0);
+			console.log(operator1 = "");
+			console.log(document.getElementById("num_display").innerHTML = "");
+			
+		}
+	}
+	
+	
+
+	</script>
+</body>
+</html>
