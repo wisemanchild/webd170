@@ -21,6 +21,7 @@
 	<title>My 1st Calculator</title>
 	<!-- Bootstrap -->
 	<link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+
 	<style>
 td, th {
 	border: 1px solid #CCC;
@@ -62,7 +63,7 @@ td, th {
   </tr>
       <tr>
     <td>OFF</td>
-    <td id="$7" class="num_style" onClick="dispClick('7')">7</td>
+		  <td class="num_style"><button id="$7" class="num_style">7</button></td>
     <td id="$8" class="num_style" onClick="dispClick(8)">8</td>
     <td id="$9" class="num_style" onClick="dispClick(9)">9</td>
     <td>%</td>
@@ -100,7 +101,9 @@ td, th {
 <script src="js/popper.min.js"></script> 
 <script src="js/bootstrap-4.0.0.js"></script> 
 <script>
-	function dispClick(n) {
+		document.getElementById("$7").addEventListener("click", function(){alert("7 was clicked");})
+	console.log()
+	/*
 		if (! isNaN(n)) { // if it's a number concant it to the string
 		document.getElementById("num_display").innerHTML += n;
 		} else if (n == ".") { // if it's a dot concant it to the string also
@@ -138,7 +141,7 @@ td, th {
 		}
 	}
 	
-	
+	*/
 
 	</script>
 </body>
