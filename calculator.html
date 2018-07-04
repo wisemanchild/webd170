@@ -53,79 +53,95 @@
 </head>
 <body>
 <!-- body code goes here -->
-<table>
-    <tr>
-        <td id="num_display" colspan="6"></td>
-    </tr>
-    <!-- 1st row or the calculator-->
-    <tr>
-        <th colspan="2"></th>
-        <th>MC</th>
-        <th>MR</th>
-        <th>M &#45</th>
-        <th>M+</th>
-        <th>History</th>
-    </tr>
-    <tr>
-        <td>OFF</td>
-        <td class="num_style">
-            <button id="$7" class="num_style" onclick="add7ToStream()">7</button>
-        </td>
-        <td class="num_style">
-            <button id="$8" class="num_style" onclick="add8ToStream()">8</button>
-        </td>
-        <td class="num_style">
-            <button id="$9" class="num_style" onclick="add9ToStream()">9</button>
-        </td>
-        <td>
-            <button onclick="delCharFromStream()">DEL</button>
-        </td>
-        <td>&#8730;</td>
-        <td id="history"></td>
-    </tr>
-    <tr>
-        <td>UD</td>
-        <td class="num_style">
-            <button id="$4" class="num_style" onclick="add4ToStream()">4</button>
-        </td>
-        <td class="num_style">
-            <button id="$5" class="num_style" onclick="add5ToStream()">5</button>
-        </td>
-        <td class="num_style">
-            <button id="$6" class="num_style" onclick="add6ToStream()">6</button>
-        </td>
-        <td>X</td>
-        <td>DIV</td>
-    </tr>
-    <tr>
-        <td>CE</td>
-        <td class="num_style">
-            <button id="one" class="num_style" onclick="add1ToStream()">1</button>
-        </td>
-        <td class="num_style">
-            <button id="$2" class="num_style" onclick="add2ToStream()">2</button>
-        </td>
-        <td class="num_style">
-            <button id="$3" class="num_style" onclick="add3ToStream()">3</button>
-        </td>
-        <td id="$add" rowspan="2">
-            <button onclick="addCalculation()">+</button>
-        </td>
-        <td id="$sub"><button onclick="subtractCalculation()">-</button></td>
-    </tr>
-    <tr>
-        <td id="$on_and_clear"><button onclick="clearMath()"> ON/C</button></td>
-        <td id="$0" class="num_style">
-            <button onclick="add0ToStream()">0</button>
-        </td>
-        <td>
-            <button id="$dot" onclick="addDecimalToStream()">.</button>
-        </td>
-        <td><button onclick="addNegativeSignTogle()">+/-</button></td>
-        <td><button onclick="mathEquals()">=</button></td>
-    </tr>
-</table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <table>
+                <tr>
+                    <td id="num_display" colspan="6"></td>
+                </tr>
+                <!-- 1st row or the calculator-->
+                <tr>
+                    <th colspan="2"></th>
+                    <th>MC</th>
+                    <th>MR</th>
+                    <th>M &#45</th>
+                    <th>M+</th>
 
+                </tr>
+                <tr>
+                    <td>OFF</td>
+                    <td class="num_style">
+                        <button id="$7" class="num_style" onclick="addToStream(7)">7</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$8" class="num_style" onclick="addToStream(8)">8</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$9" class="num_style" onclick="addToStream(9)">9</button>
+                    </td>
+                    <td>
+                        <button onclick="delCharFromStream()">DEL</button>
+                    </td>
+                    <td>&#8730;</td>
+
+                </tr>
+                <tr>
+                    <td>UD</td>
+                    <td class="num_style">
+                        <button id="$4" class="num_style" onclick="addToStream(4)">4</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$5" class="num_style" onclick="addToStream(5)">5</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$6" class="num_style" onclick="addToStream(6)">6</button>
+                    </td>
+                    <td>X</td>
+                    <td>DIV</td>
+                </tr>
+                <tr>
+                    <td>CE</td>
+                    <td class="num_style">
+                        <button id="one" class="num_style" onclick="addToStream(1)">1</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$2" class="num_style" onclick="addToStream(2)">2</button>
+                    </td>
+                    <td class="num_style">
+                        <button id="$3" class="num_style" onclick="addToStream(3)">3</button>
+                    </td>
+                    <td id="$add" rowspan="2">
+                        <button onclick="addCalculation()">+</button>
+                    </td>
+                    <td id="$sub">
+                        <button onclick="subtractCalculation()">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="$on_and_clear">
+                        <button onclick="clearMath()"> ON/C</button>
+                    </td>
+                    <td id="$0" class="num_style">
+                        <button onclick="addToStream(0)">0</button>
+                    </td>
+                    <td>
+                        <button id="$dot" onclick="addDecimalToStream()">.</button>
+                    </td>
+                    <td>
+                        <button onclick="addNegativeSignTogle()">+/-</button>
+                    </td>
+                    <td>
+                        <button onclick="mathEquals()">=</button>
+                    </td>
+                </tr>
+            </table>
+        </div> <!-- end of col-md-6-->
+        <div class="col-md-6"><h2>Calculator History</h2>
+            <p id="history"></p>
+        </div>
+    </div> <!--// end of row -->
+</div> <!-- // end of container -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.2.1.min.js"></script>
 
@@ -142,83 +158,12 @@
     /**
      * add number 1 to the number stream variable
      */
-    function add1ToStream() {
-        numStream += "1";
+    function addToStream(num) {
+        numStream += num;
         document.getElementById("num_display").innerHTML = numStream;
 
     }
 
-    /**
-     * add 2 to the number stream
-     */
-    function add2ToStream() {
-        numStream += "2";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add three to the stream
-     */
-    function add3ToStream() {
-        numStream += "3";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 4 to stream
-     */
-    function add4ToStream() {
-        numStream += "4";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 5 to stream
-     */
-    function add5ToStream() {
-        numStream += "5";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 6 to stream
-     */
-    function add6ToStream() {
-        numStream += "6";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 7 to stream
-     */
-    function add7ToStream() {
-        numStream += "7";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 8 to the stream
-     */
-    function add8ToStream() {
-        numStream += "8";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 9 to stream
-     */
-    function add9ToStream() {
-        numStream += "9";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
-
-    /**
-     * add 0 to stream
-     */
-    function add0ToStream() {
-        numStream += "0";
-        document.getElementById("num_display").innerHTML = numStream;
-    }
 
     /**
      * delete number from end of stream
@@ -251,7 +196,7 @@
 
         if (!isNaN(numStream)) {
             operand1 += eval(parseFloat(numStream));
-            document.getElementById("history").innerHTML = "<p> " + operand1 + " + "+" </p>";
+            document.getElementById("history").innerHTML = "<p> " + operand1 + " + " + " </p>";
             document.getElementById("num_display").innerText = operand1;
             numStream = "" // clear out numStream math is complete
         }
@@ -270,7 +215,7 @@
 
         if (!isNaN(operand1)) {
             operand1 -= eval(parseFloat(numStream));
-            document.getElementById("history").innerHTML = "<p> " + operand1 + "</p>";
+            document.getElementById("history").innerHTML += "<p> " + operand1 + "</p>";
             document.getElementById("num_display").innerText = operand1;
             numStream = operand1;
         }
@@ -283,14 +228,14 @@
      * eval the value and clear the memory
      */
     function mathEquals() {
-      if (!isNaN(operand1)) {
-          operand2 = eval(parseFloat(operand1) + parseFloat(numStream));
-          document.getElementById("history").innerHTML = "";
-          document.getElementById("num_display").innerHTML = operand2;
-          operand1 = 0;
-          operand2 = 0;
-          numStream = "";
-      }
+        if (!isNaN(operand1)) {
+            operand2 = eval(parseFloat(operand1) + parseFloat(numStream));
+            document.getElementById("history").innerHTML = "";
+            document.getElementById("num_display").innerHTML = operand2;
+            operand1 = 0;
+            operand2 = 0;
+            numStream = "";
+        }
     }
 
     /**
@@ -311,7 +256,7 @@
     function addNegativeSignTogle() {
         var negPosNumber = parseFloat(numStream);
         if (eval(negPosNumber) > 0) {
-            negPosNumber *=  -1;
+            negPosNumber *= -1;
             console.log("multiplied by -1 " + negPosNumber);
         }
         else {
