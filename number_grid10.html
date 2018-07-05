@@ -1,0 +1,75 @@
+<html>
+<head>
+    <!--
+nlm-2018-07-05
+     To  solve the problem of the grid you need to use geometry in XYZ coordinates. For every x columns (horizontal) printed there must be 10 y rows (vertical) printed below it.
+To solve the diagonal green color the factors of (x * y)  when (x == y) works.  For each z (cell position) that is equal to x==y we change the color of the cell.
+To solve the blue color numbers we print out a blue class number for all numbers in the y loop that is <10 (less than 10).
+	1. Why is my red not working?
+	2. How can I get rid of the 0's and the 0-9 at the top of the page?
+
+    -->
+
+
+    <<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        td, th {
+            border: 1px solid #CCC;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            margin: 5px;
+            font-size: 2em;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .myred {
+            color: red;
+        }
+
+    </style>
+    <script>
+        var x, y, z // variable declaration
+    </script>
+</head>
+<body>
+
+<table>
+    <script>
+        for (y = 0; y <= 10; ++y) { // vertical numbers
+
+           if (y.valueOf() ===1) {
+               document.write("<tr class='myred'>" + y + "</tr>");
+           } else {
+               document.write("<tr>" + y + "</tr>");
+           }
+
+            for (x = 0; x <= 10; ++x) { // horizontal numbers
+                z = y * x;
+
+                if (x === y) {
+                    document.write("<td class='green'>" + z + "</td>"); // diagonal numbers
+                }
+                else {
+                    if (x.valueOf() === 1) {
+                        document.write("<td class='blue'>" + z + "</td>"); // blue numbers in 1st column
+                    } else {
+                        document.write("<td>" + z + "</td>")
+                    }
+                }
+            }
+
+
+        }
+    </script>
+</table>
+</body>
+</html>
