@@ -11,7 +11,9 @@ To solve the blue color numbers we print out a blue class number for all numbers
     -->
 
 
-    <<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         td, th {
             border: 1px solid #CCC;
@@ -45,18 +47,15 @@ To solve the blue color numbers we print out a blue class number for all numbers
 <table>
     <script>
         for (y = 0; y <= 10; ++y) { // vertical numbers
-
-           if (y.valueOf() ===1) {
-               document.write("<tr class='myred'>" + y + "</tr>");
-           } else {
-               document.write("<tr>" + y + "</tr>");
-           }
+            document.write("<tr>" + y + "</tr>");
 
             for (x = 0; x <= 10; ++x) { // horizontal numbers
                 z = y * x;
 
                 if (x === y) {
                     document.write("<td class='green'>" + z + "</td>"); // diagonal numbers
+                } else if (y === 1) {
+                    document.write("<td class='myred'>" + z + "</td>"); // first row of red numbers
                 }
                 else {
                     if (x.valueOf() === 1) {
