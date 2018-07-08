@@ -1,6 +1,18 @@
 <html>
 <head>
     <!--
+   / *-- HTML FILE -------------------------------------------------------------
+    *  Application: JavaScript week 3 homework
+    *      Purpose: create a table with special formated features
+    *    File Name: number_grid10.html
+    *       Author: Norman McWilliams           Tester:
+    * Date created: 2018-07-03                 Date updated: 2018-07-08
+    * Time created:                             Time updated: 12:01am
+    *  comments:
+    *
+    *-----------------------------------------------------------------------------
+nlm-2018-07-07 11:49pm tweaked it and added > 0 sections to modify the 1st column colors.
+nlm-2018-07-07 - review the correct syntax for a table and write the code to make sure that the table is explicitly declared and written.  No html code written outside of javaScript
 nlm-2018-07-05 6:17pm
      To  solve the problem of the grid you need to use geometry in XYZ coordinates. For every x columns (horizontal) printed there must be 10 y rows (vertical) printed below it.
 To solve the diagonal green color the factors of (x * y)  when (x == y) works.  For each z (cell position) that is equal to x==y we change the color of the cell.
@@ -9,7 +21,6 @@ g   red was not working because I wasn't using in on a <td> tag made the correct
     -->
 
 
-    <
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -35,38 +46,51 @@ g   red was not working because I wasn't using in on a <td> tag made the correct
             color: red;
         }
 
+        thead {
+            color: blue;
+        }
+
     </style>
     <script>
-        var x, y, z // variable declaration
+        var w = 0, x, y, z // variable declaration
     </script>
 </head>
 <body>
 
-<table>
-    <script>
-        for (y = 1; y <= 10; y++) { // vertical numbers
-            document.write("<tr></tr>"); // stopped printing numbers in the row values
 
-            for (x = 1; x <= 10; x++) { // horizontal numbers
-                z = y * x;
+<script>
+    document.write("<table>");
+    document.write("<thead>");
+    for (y = 0; y <= 10; y++) { // vertical number
+        if (y === 0) {
+            document.write("<th class='myred'> x </th>")
+        } else
+            document.write("<th class='myred'>" + y + "</th>"); // stopped printing numbers in the row values
+    }
+    document.write("</thead>");
+    for (y = 1; y <= 10; y++) { // vertical numbers
+        document.write("<tr></tr>"); // create the row for the numbers
 
-                if (x === y) {
-                    document.write("<td class='green'>" + z + "</td>"); // diagonal numbers
-                } else if (y === 1) {
-                    document.write("<td class='myred'>" + z + "</td>"); // first row of red numbers
-                }
-                else {
-                    if (x.valueOf() === 1) {
-                        document.write("<td class='blue'>" + z + "</td>"); // blue numbers in 1st column
-                    } else {
-                        document.write("<td>" + z + "</td>")
-                    }
+        for (x = 0; x <= 10; x++) { // horizontal numbers
+            z = y * x;
+            if (x === 0) {
+                w++;
+                document.write("<td class='blue' >" + w + "</td>"); // blue numbers in 1st column
+            }
+            if (x === y) {
+                document.write("<td class='green'>" + z + "</td>"); // diagonal numbers
+            } else {
+                if (x > 0) { // skipping over the 1st column
+                    document.write("<td >" + z + "</td>")
                 }
             }
 
-
         }
-    </script>
-</table>
+
+
+    }
+    document.write("<table>")
+</script>
+
 </body>
 </html>
