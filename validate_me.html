@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<!-- saved from url=(0116)https://sdccd.blackboard.com/bbcswebdav/pid-5717827-dt-content-rid-49409370_1/courses/182_20_WEBD170_90104/form.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!DOCTYPE html><!-- saved from url=(0116)https://sdccd.blackboard.com/bbcswebdav/pid-5717827-dt-content-rid-49409370_1/courses/182_20_WEBD170_90104/form.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
     <!--
 / *-- HTML FILE -------------------------------------------------------------
 *  Application: JavaScript week 4 homework
 *      Purpose: write validate JavaScript without changes to html code
-*    File Name: valudate_me.html
+*    File Name: validate_me.html
 *       Author: Norman McWilliams           Tester:
 * Date created: 2018-07-15                 Date updated: 2018-07-15
 * Time created: 6:00pm                     Time updated: 6:31pm
@@ -13,101 +14,119 @@
 *  want to come up with a switch within the validateMe function that will solve all the validation in the form
 *-----------------------------------------------------------------------------
 -->
-<title>Validate me</title>
-<script>
+    <title>Validate me</title>
+    <script>
 
-    /*
+        /*
     *  need to validate the form using all JavaScript
     * */
-    function validateMe(){
-        // validate if text object is empty or has default value
+        function validateMe() {
+            // validate if text object is empty or has default value
+            var alertText = "";
+            var x = 0;
+            var y = 0;
+            var radioGroup;
+            var radioSelected = false;
+            var checkboxGroup;
+            var validForm = false;
+            console.log(document.forms[0].elements.length);
+            for (x in document.forms[0].elements) {
+                var elem = document.forms[0].elements[x];
+                console.log(x);
+                console.log(elem.name);
+                console.log(elem.type);
+                switch (elem.type) {
+                    case "text":
+                        console.log(elem.name + " is a text object");
+                        if (elem.value === elem.defaultValue) {
+                            elem.validationMessage = elem.name + " field cannot be left blank";
+                            alertText += elem.name + " field cannot be left blank";
+                            console.log("the value was " + elem.defaultValue);
+                            console.log(alertText);
+                            validForm = false;
+                        } else {
+                            console.log("someone answered the questions " + elem.value);
+                            validForm = true;
+                        }
 
-        var alertText = "";
-        console.log(document.forms[0].elements.length);
-        for ( var x in document.forms[0].elements.length) {
+                        break;
+                    case "radio":
+                        // found the documentation on NodeLists so that I didn't have to write a loop to check if at least one radio button was clicked
+                        radioGroup = document.forms[0].gender;
 
-            switch (document.forms[0].elements[x].type) {
-                case "text":
-                    // check to see if the text box is empty or is still filled with placeholder value
+                        for (y in radioGroup) {
+                            console.log(elem.name + " is a radio object");
+                            if (radioGroup[y].checked) {
+                                console.log(radioGroup[y].name + " was checked");
+                                radioSelected = true;
+                                validForm = true;
+                            } else {
+                                alertText += " a " +  elem.name + " must be selected " + "<br>";
+                                console.log("no radio button was selected");
+                                console.log(alertText);
+                                validForm = false;
+                            }
+                        }
+                            break;
 
-/*
-                    if (document.forms[0].elements[x].value === "" || document.forms[0].elements[x].value === document.forms[0].elements[x].defaultValue) {
-                        document.forms[0].elements[x].validationMessage = document.forms[0].elements[x].name + "field cannot be left blank";
-                        alertText += document.forms[0].elements[x].name + " field cannot be left blank";
-                    }
-*/
-                    console.log("text box");
-                    break;
-                case "radio":
-                    // if no radio button is selected from a named group
-                    // cycle through all radio buttons that have the same name and see if any of them are checked
-/*
-                    document.forms[0].elements[x].validationMessage = "document.forms[0].elements[x].name" + " you must pick at least one radio in this category" ;
-                    alertText += "document.forms[0].elements[x].name" + " you must pick at least one radio in this category" + "<br>";
-                    console.log("radio button");
-                    return false;
-*/
+                    case "checkbox":
+                        // ****  HELP *****
+                        // could not get the NodeList method to work on hobbies[]
+                       // checkboxGroup = document.elements.hobbies;
+                        console.log(elem.name + " is a checkbox object");
 
-                case "checkbox":
-                    // at least one check box should have a value
-                    //cycle through all check boxes and see if at least one has a value
-/*
-                    document.forms[0].elements[x].validationMessage = "document.forms[0].elements[x].name" + " you must pick at least one check box in this category" ;
-                    alertText += "document.forms[0].elements[x].name" + " you must pick at least one check box in this category" + "<br>";
-
-                    return false;
-*/
-                console.log("check box");
-                    break;
-                case "select":
-                    console.log("select");
-                    return false;
-                    break;
-                case "option":
-                    console.log("options")
-                    break;
+                        if (elem.checked) {
+                            console.log("checkbox was checked");
+                        } else {
+                            console.log("checkbox was not checked");
+                        }
+                        break;
+                    case "select-one":
+                        if (document.forms[0].elements.show.value === "") {
+                            alertText += " a " +  elem.name + " must be selected " + "<br>";
+                            console.log("no show was selected");
+                            console.log(alertText);
+                            validForm = false;
+                        } else {
+                            console.log("user picked a new show called " + elem.value);
+                            validForm = true;
+                        }
+                        break;
+                    case "textarea":
+                        console.log(elem.name + " is a text area");
+                        break;
+                }
             }
+            if (validForm === false) {
                 alert(alertText);
-
-
-            console.log(x);
-            console.log(document.forms[0].elements[x].name);
-           console.log(document.forms[0].elements[x].value);
+            }
+            return validForm;
         }
-		return false;
-		}
-	
-</script>
+
+
+    </script>
 </head>
 <body>
 At least one piece of data has to come in from every input type.
-<form action="" method="get"  onsubmit="return validateMe();"><br>
-Name:<input type="text" id="test" name="fullname" placeholder="Enter Full Name"><br>
-Gender:<br>
-Male<input type="radio" name="gender" value="male">Female<input type="radio" name="gender" value="female"><br>
-Hobbies<br>
-Baseball <input type="checkbox" name="hobbies[]" value="baseball">  
-Football <input type="checkbox" name="hobbies[]" value="football">  
-Hockey <input type="checkbox" name="hobbies[]" value="hockey"><br>
-Favorite Show <select name="show">
-<option value="">Choose Below</option>
-<option value="ATHF">Aqua Teen Hunger Force</option>
-<option value="Family Guy">Family Guy</option>
-<option value="Simpsons">Simpsons</option>
-</select><br>
-Comments<br>
-<textarea cols="50" rows="6" name="comments">Enter Comments</textarea><br>
-<input type="submit" name="submit" value="enter me">
+
+<form action method="get" onsubmit="return validateMe();"><br/>
+    Name:<input type="text" id="test" name="fullname" placeholder="Enter Full Name"/><br/>
+    Gender:<br/>
+    Male<input type="radio" name="gender" value="male"/>Female<input type="radio" name="gender" value="female"/><br/>
+    Hobbies<br/>
+    Baseball <input type="checkbox" name="hobbies[]" value="baseball"/>
+    Football <input type="checkbox" name="hobbies[]" value="football"/>
+    Hockey <input type="checkbox" name="hobbies[]" value="hockey"/><br/>
+    Favorite Show <select name="show">
+        <option value>Choose Below</option>
+        <option value="ATHF">Aqua Teen Hunger Force</option>
+        <option value="Family Guy">Family Guy</option>
+        <option value="Simpsons">Simpsons</option>
+    </select><br/>
+    Comments<br/><textarea cols="50" rows="6" name="comments">Enter Comments</textarea><br/><input type="submit"
+                                                                                                   name="submit"
+                                                                                                   value="enter me"/>
 </form>
-<script>
-</script>
-
-
-
-
-
-
-
-
-
-</body></html>
+<script></script>
+</body>
+</html>
