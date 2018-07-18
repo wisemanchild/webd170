@@ -6,9 +6,9 @@
 / *-- HTML FILE -------------------------------------------------------------
 *  Application: JavaScript week 4 homework
 *      Purpose: write validate JavaScript without changes to html code
-*    File Name: validate_me.html
+*    File Name: validate_me2.html
 *       Author: Norman McWilliams           Tester:
-* Date created: 2018-07-15                 Date updated: 2018-07-15
+* Date created: 2018-07-15                 Date updated: 2018-07-17
 * Time created: 6:00pm                     Time updated: 6:31pm
 *  comments:
 *  want to come up with a switch within the validateMe function that will solve all the validation in the form
@@ -17,8 +17,25 @@
     <title>Validate me</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script>
+        var oneSelected = 0;
+
+        /**
+         *
+         * function called with forEach to check each radio button value
+        */
+        function validateRadioGroup(radioGroup) {
+            var x = 0;
+            console.log(radioGroup);
+            for (x in radioGroup) {
+                if (!isNaN(x)) {
+                    if (radioGroup[x].checked) {
+                        oneSelected = 1;
+                    }
+                }
+            }
+        }
 
         /*
     *  need to validate the form using all JavaScript
@@ -26,33 +43,36 @@
         function validateMe() {
             // validate if text object is empty or has default value
             var alertText = "";
-            var x = 0;
-            var y = 0;
+            var x;
+            var y;
             var radioGroup;
+            var radioGroupName;
             var radioSelected = false;
             var checkboxGroup;
             var validForm = false;
             console.log(document.forms[0].childNodes.length);
-            for (x in document.forms[0].childNodes.length) {
+            for (x in document.forms[0].childNodes) {
                 var elem = document.forms[0].childNodes[x]; // assign the object to a variable for ease of coding
-                console.log("x = " + x + ", " + elem.name + ", " + elem.type);
                 switch (elem.type) { // perform error checking based on object type
                     case "text":
                         if (elem.value === elem.defaultValue) {
                             elem.validationMessage = elem.name + " field cannot be left blank";
-                            elem.className="alert alert-danger";
-                            elem.alt="field cannot be left blank";
+                            elem.className = "alert alert-danger";
+                            elem.alt = "field cannot be left blank";
                             alertText += elem.name + " field cannot be left blank" + "<br>"; // add to the error message alert
                             // validForm is set to false
                             validForm = false;
                         } else {
-                           elem.valudationMessage=""
+                            elem.valudationMessage = ""
                             validForm = true;
                         }
                         break;
                     case "radio":
                         // found the documentation on NodeLists so that I didn't have to write a loop to check if at least one radio button was clicked
-                        radioGroup = document.forms[0].gender;
+                        radioGroupName = elem.name;
+                        radioGroup = document.getElementsByName(radioGroupName);
+                        radioGroup.forEach(validateRadioGroup(radioGroup));
+                        console.log(radioSelected);
                         validForm = false;     // default to false until validated that one button has been picked
                         radioSelected = false; // at least one radio button in this set has to be picked
 
@@ -63,21 +83,21 @@
                                 console.log(radioGroup[y].name + " was checked");
                                 radioSelected = true;
                                 validForm = true;
-                                radioGroup[y].className ="alert alert-danger";
+                                radioGroup[y].className = "alert alert-danger";
                                 radioGroup[y].alt = "at least one button in this group must be picked";
                             } else {
                                 console.log("no radio button was selected");
-                                radioGroup[y].className ="alert alert-danger";
+                                radioGroup[y].className = "alert alert-danger";
                                 radioGroup[y].alt = "at least one button in this group must be picked";
                                 validForm = false;
                             }
                         }
-                            break;
+                        break;
 
                     case "checkbox":
                         // ****  HELP *****
                         // could not get the NodeList method to work on hobbies[]
-                       // checkboxGroup = document.elements.hobbies;
+                        // checkboxGroup = document.elements.hobbies;
                         console.log(elem.name + " is a checkbox object");
 
                         if (elem.checked) {
@@ -88,7 +108,7 @@
                         break;
                     case "select-one":
                         if (document.forms[0].elements.show.value === "") {
-                            alertText += " a " +  elem.name + " must be selected " + "<br>";
+                            alertText += " a " + elem.name + " must be selected " + "<br>";
                             console.log("no show was selected");
                             console.log(alertText);
                             validForm = false;
@@ -100,7 +120,10 @@
                     case "textarea":
                         console.log(elem.name + " is a text area");
                         break;
+                    default:
+                        break;
                 }
+                console.log("x = " + x + ", " + elem.name + ", " + elem.type);
             }
             if (validForm === false) {
                 alert(alertText);
@@ -117,11 +140,12 @@ At least one piece of data has to come in from every input type.
 <form action method="get" onsubmit="return validateMe();"><br/>
     Name:<input type="text" id="test" name="fullname" placeholder="Enter Full Name"/><br/>
     Gender:<br/>
-    <label for="male">Male</label><input  class="alert alert-danger" type="radio" name="gender" value="male"/><label for="female">Female</label><input class="alert alert-danger" type="radio" name="gender" value="female"/><br/>
+    Male<input class="alert alert-danger" type="radio" name="gender" value="male"/>Female<input
+            class="alert alert-danger" type="radio" name="gender" value="female"/><br/>
     Hobbies<br/>
-    Baseball <input type="checkbox" name="hobbies[]" value="baseball"/>
-    Football <input type="checkbox" name="hobbies[]" value="football"/>
-    Hockey <input type="checkbox" name="hobbies[]" value="hockey"/><br/>
+    Basebal<input type="checkbox" name="hobbies[]" value="baseball"/>
+    Football<input type="checkbox" name="hobbies[]" value="football"/>
+    Hockey</label><input type="checkbox" name="hobbies[]" value="hockey"/><br/>
     Favorite Show <select name="show">
         <option value>Choose Below</option>
         <option value="ATHF">Aqua Teen Hunger Force</option>
