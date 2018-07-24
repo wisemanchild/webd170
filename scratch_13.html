@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+
+<body>
+    <header>
+        <title>Normtemp XML</title>
+    </header>
+    
+    <main>
+    </main>
+    <script >
+        let jobj = new XMLHttpRequest();
+        src="https://api.infoconnect.com/v1/companies/?apikey=9f17670f1f774ddab21dae480bfc7f20&city=san diego&postalcode=92129&resourcetype=Enhanced&stateprovince=ca";
+        jobj.open("GET", src, true);
+        jobj.send();
+        console.log(jobj.readyState);
+
+        console.log(jobj.responseText);
+
+        alert("wait");
+    </script>
+    <footer></footer>
+</body>
+</html>

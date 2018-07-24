@@ -1,0 +1,115 @@
+
+<!doctype html>
+<head>
+    <title>Validate me</title>
+    <script>
+
+    </script>
+</head>
+<body>
+At least one piece of data has to come in from every input type.
+<form action="hw5.html"  method="get" onsubmit="return validateMe();"><br>
+
+    <div>
+        Name:
+        <input type="text" id = "name" name="fullname" placeholder = "Enter Full Name"><br>
+        <span id="fullname_error"></span><br>
+    </div>
+
+    <div>
+        Gender:<br>
+        Male
+        <input type="radio" name="gender" value="male">
+        Female
+        <input type="radio" name="gender" value="female"><br>
+        <span id="gender_error"></span><br>
+    </div>
+
+    <div>
+        Hobbies<br>
+        Baseball <input type="checkbox" title="hobby" name="hobbies[]" value="baseball">
+        Football <input type="checkbox" title="hobby" name="hobbies[]" value="football">
+        Hockey <input type="checkbox" title="hobby" name="hobbies[]" value="hockey"><br>
+        <span id="hobbies[]_error"></span><br>
+    </div>
+
+    <div>
+        Favorite Show <br><select id="show" name="show">
+        <option value="">Choose Below</option>
+        <option value="ATHF">Aqua Teen Hunger Force</option>
+        <option value="Family Guy">Family Guy</option>
+        <option value="Simpsons">Simpsons</option>
+    </select><br>
+        <span id="show_error"></span><br>
+    </div>
+
+    <div>
+        Comments<br>
+        <textarea rows="6" cols="50" name="comments"  id="comments" placeholder="Enter comments" tabindex="4" value=''></textarea>
+        <span id="comments_error"></span>
+    </div>
+
+    <input type="submit" name="submit" value="Enter">
+</form>
+
+
+
+<script>
+    function myFunction() {
+        console.log(objDivArray)
+    }
+    function tagValidate(obj) {{
+        let objTextGroup = obj.getElementByTagName("text");
+        // if input greater then 0
+        if (objTextGroup.length > 0) {
+            alert(objTextGroup.name)
+        }
+        // if input is type text
+        //if
+        // if input is type radio
+        // if input is type select
+        function validateMe(){
+        let objDivArray = document.getElementsByTagName("div"); // collect all the div sections in the report
+        let objInputGroup =
+        // let objDivArray = document.getElementByName("div");
+        // get the collection of objects within a dev
+
+        console.log(document.all.length);
+        console.log(objDivArray);
+     //   console.log(document.getElementsTagByName("div").length);
+        console.log(document.getElementsByTagName("div"));
+        for (x = 0; objDivArray.item(x); x++) {
+            objInputGroup = objDivArray.item(x);
+            console.log(objInputGroup.children);
+            if (objInputGroup.length > 0) {
+                tagValidate(objInputGroup);
+            }
+        }
+
+
+        // go to each div and check for input
+
+        alert("it worked");
+
+        // check to see if the object is an imput
+        // validate that if it is a text field that it is not empty
+        // validate that if it is a radio button that at least one has been selected
+        // validate that if it is a select that something has been selected
+        // validate{
+
+        return false;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
